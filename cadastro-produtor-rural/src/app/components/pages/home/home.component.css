@@ -1,0 +1,29 @@
+.backgroud {
+  background: url(../../../../assets/img/backgroud-produtor-rural.png);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.button-register {
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  width: 20rem;
+  height: 5rem;
+  background-color: #48a1af;
+  grid-column: 3;
+  grid-row: 2;
+  justify-self: center;
+  align-self: center;
+  transition: 0.3s ease;
+  font-size: 1.3rem;
+}
+
+.button-register:hover {
+  background-color: #e2bd86;
+}

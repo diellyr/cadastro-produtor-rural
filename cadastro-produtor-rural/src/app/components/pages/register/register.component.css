@@ -1,0 +1,21 @@
+.content-form {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  padding-right: 20rem;
+  padding-left: 20rem;
+}
+
+.content-form form .input {
+  border: none;
+  height: 40px;
+  padding: 1rem 2rem;
+  border-radius: 20px;
+  margin: 0.5rem 0 2rem;
+  background-color: #cce0e0;
+}
+
+.content-form form {
+  display: flex;
+  flex-direction: column;
+}
+

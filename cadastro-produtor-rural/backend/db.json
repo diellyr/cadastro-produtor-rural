@@ -1,0 +1,29 @@
+{
+  "registers": [
+    {
+      "id": 1,
+      "cpfCnpjField": 44607663883,
+      "name": "Thalita",
+      "farmName": "Fazenda da Laura",
+      "state": "São Paulo",
+      "city": "Boituva",
+      "arableArea": 100000,
+      "vegetationArea": 111111,
+      "plantedCrops": [
+        "Algodão",
+        "Milho"
+      ]
+    },
+    {
+      "cpfCnpjField": "rwewerw",
+      "name": "rwerewr",
+      "farmName": "ewrwer",
+      "state": "fdsfdsfsd",
+      "city": "fsdfsdfsd",
+      "arableArea": 324324324,
+      "vegetationArea": 4234234,
+      "plantedCrops": "fdsdfdssdf",
+      "id": 2
+    }
+  ]
+}
