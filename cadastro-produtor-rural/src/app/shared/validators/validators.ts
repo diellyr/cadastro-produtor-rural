@@ -1,5 +1,8 @@
 export class Validators {
   static validateCPF(cpf: string): boolean {
+    if (!cpf) {
+      return false;
+    }
     cpf = cpf.replace(/\D/g, '');
 
     if (cpf.length !== 11) {
@@ -43,7 +46,10 @@ export class Validators {
   }
 
   static validateCNPJ(cnpj: string): boolean {
-    cnpj = cnpj.replace(/\D/g, '');
+    if (!cnpj) {
+      return false;
+    }
+    cnpj = cnpj.replace(/\D/g, ''); // Remover caracteres especiais
 
     if (cnpj.length !== 14) {
       return false;
@@ -51,19 +57,22 @@ export class Validators {
 
     // Validar dígitos verificadores
     const validateDigit = (digits: string): boolean => {
-      const weights = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
-      const mod = (x: number, y: number): number => ((x % y) + y) % y;
-      const calcDigit = (base: string): number => {
+      const weights = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+      const calculateDigit = (base: string): number => {
         const sum = base.split('').reduce((acc, digit, i) => {
           const weight = weights[i];
           return acc + (parseInt(digit, 10) * weight);
         }, 0);
-        return mod(11 - mod(sum, 11), 10);
+        const remainder = sum % 11;
+        return remainder < 2 ? 0 : 11 - remainder;
       };
       const base = digits.slice(0, -2);
-      const expectedDigit1 = calcDigit(base);
-      const expectedDigit2 = calcDigit(base + expectedDigit1);
-      return digits.endsWith(expectedDigit1.toString() + expectedDigit2.toString());
+      const expectedDigit1 = calculateDigit(base + digits[digits.length - 2]);
+      const expectedDigit2 = calculateDigit(base + digits[digits.length - 2] + expectedDigit1.toString());
+      return (
+        digits[digits.length - 2] === expectedDigit1.toString() &&
+        digits[digits.length - 1] === expectedDigit2.toString()
+      );
     };
 
     if (!validateDigit(cnpj)) {

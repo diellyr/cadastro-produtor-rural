@@ -9,7 +9,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RegisterComponent } from './components/pages/register/register.component';
 import { HomeComponent } from './components/pages/home/home.component';
-import { CpfCnpjPipeModule } from './components/pipes/cpfCnpj/cpfCnpj.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { CpfCnpjPipeModule } from './components/pipes/cpfCnpj/cpfCnpj.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    CpfCnpjPipeModule
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent],

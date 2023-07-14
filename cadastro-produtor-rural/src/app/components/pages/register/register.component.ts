@@ -1,8 +1,10 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RegisterService } from 'src/app/services/register.service';
-import { validateCpfCnpj } from '../../validators/cpf-cnpj/validateCpfCnpj'
+import { RegisterService } from 'src/app/shared/services/register.service';
+import { validateCpfCnpj } from 'src/app/shared/validators/cpf-cnpj/validateCpfCnpj';
+import { StatesService } from 'src/app/shared/services/location/state.service';
+import { CitiesService } from 'src/app/shared/services/location/cities.service';
 
 @Component({
   selector: 'app-register',
@@ -12,12 +14,20 @@ import { validateCpfCnpj } from '../../validators/cpf-cnpj/validateCpfCnpj'
 export class RegisterComponent implements OnInit {
 
   form!: FormGroup;
+  cpfCnpjField!: string;
+  states!: string[];
+  selectedState!: string;
+  cities!: string[];
+  selectedCity!: string;
 
   constructor(
     private service: RegisterService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private statesService: StatesService,
+    private citiesService: CitiesService
   ) {
+    this.states = this.statesService.getStates();
   }
 
   ngOnInit(): void {
@@ -30,14 +40,14 @@ export class RegisterComponent implements OnInit {
       farmName: ['', Validators.required],
       state: ['', Validators.required],
       city: ['', Validators.required],
-      arableArea: [0, Validators.compose([
+      arableArea: ['', Validators.compose([
         Validators.required
       ])],
-      vegetationArea: [0, Validators.compose([
+      vegetationArea: ['', Validators.compose([
         Validators.required
       ])],
       plantedCrops: ['', Validators.required]
-    })
+    });
   }
 
   register() {
@@ -50,5 +60,16 @@ export class RegisterComponent implements OnInit {
 
   cancel() {
     this.router.navigate(['/home'])
+  }
+
+  onInputChange(event: any) {
+    const input = event.target as HTMLInputElement;
+    const sanitizedValue = input.value.replace(/[a-zA-Z]/g, '');
+    input.value = sanitizedValue;
+  }
+
+  onStateChange() {
+    this.cities = this.citiesService.getCities(this.selectedState);
+    this.selectedCity = '';
   }
 }

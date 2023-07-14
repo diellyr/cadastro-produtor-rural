@@ -5,14 +5,16 @@
     <!-- •	O sistema deverá validar CPF e CNPJ digitados incorretamente. -->
     <label for="cpfCnpjField">CPF ou CNPJ</label>
     <input
-      type="text"
+      type="string"
       id="cpfCnpjField"
       class="input"
       formControlName="cpfCnpjField"
+      [ngModel]="cpfCnpjField | cpfCnpjFormat"
+      (ngModelChange)="cpfCnpjField=$event"
+      (input)="onInputChange($event)"
     >
-    <div>
-      {{ "44607663883" | cpfCnpj}}
-    </div>
+    <div *ngIf="form.get('cpfCnpjField')?.errors && form.get('cpfCnpjField')?.touched && !(form.get('cpfCnpjField')?.dirty)">Campo obrigatório</div>
+    <div *ngIf="form.get('cpfCnpjField')?.errors?.['cpfCnpjInvalido'] && form.get('cpfCnpjField')?.dirty">CPF ou CNPJ inválido.</div>
 
     <!-- nome do produtor -->
     <label for="name">Seu Nome</label>
@@ -22,6 +24,7 @@
       class="input"
       formControlName="name"
     >
+    <div *ngIf="form.get('name')?.errors && form.get('name')?.touched">Campo obrigatório</div>
 
     <!-- nome da fazenda -->
     <label for="farm-name">Nome da Fazenda</label>
@@ -31,54 +34,107 @@
       class="input"
       formControlName="farmName"
     >
+    <div *ngIf="form.get('farmName')?.errors && form.get('farmName')?.touched">Campo obrigatório</div>
 
-    <!-- criar um select com os estados do brasil -->
-    <label for="state">Seu Estado</label>
-    <input
-      type="text"
-      id="state"
-      class="input"
-      formControlName="state"
-    >
+    <div>
+      <label for="state">Estado</label>
+      <select [(ngModel)]="selectedState" id="state" formControlName="state" (change)="onStateChange()">
+        <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+      </select>
+      <div *ngIf="form.get('state')?.errors && form.get('state')?.touched">Campo obrigatório</div>
 
-    <!-- criar um select com nome com um select com as cidades do estado escolhido -->
-    <label for="city">Sua Cidade</label>
-    <input
-      type="text"
-      id="city"
-      class="input"
-      formControlName="city"
-    >
+      <label for="city">Cidade</label>
+      <select [(ngModel)]="selectedCity">
+        <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+      </select>
+      <div *ngIf="form.get('city')?.errors && form.get('city')?.touched">Campo obrigatório</div>
+    </div>
 
-    <!-- •	A soma de área agricultável e vegetação, não deverá ser maior que a área total da fazenda -->
-    <!-- area agricultavel em hectares -->
-    <label for="arable-area">Sua área agricultável (em hectares)</label>
-    <input
-      type="number"
-      id="arable-area"
-      class="input"
-      formControlName="arableArea"
-    >
+    <div class="content-area">
+      <div class="content-farm">
+        <label for="farm-area">Área total da Fazenda (em hectares)</label>
+        <input
+          type="string"
+          id="farm-area"
+          class="input"
+          formControlName="farmArea"
+        >
+        <div *ngIf="form.get('farmArea')?.errors && form.get('farmArea')?.touched">Campo obrigatório</div>
+      </div>
 
-    <!-- •	A soma de área agricultável e vegetação, não deverá ser maior que a área total da fazenda -->
-    <!-- area de vegetação em hectares -->
-    <label for="vegetation-area">Sua área de vegetação (em hectares)</label>
-    <input
-      type="number"
-      id="vegetation-area"
-      class="input"
-      formControlName="vegetationArea"
-    >
+      <div class="content-arable">
+        <!-- •	A soma de área agricultável e vegetação, não deverá ser maior que a área total da fazenda -->
+        <!-- area agricultavel em hectares -->
+        <label for="arable-area">Área agricultável (em hectares)</label>
+        <input
+          type="sting"
+          id="arable-area"
+          class="input"
+          formControlName="arableArea"
+        >
+        <div *ngIf="form.get('arableArea')?.errors && form.get('arableArea')?.touched">Campo obrigatório</div>
+      </div>
+
+      <div class="content-vegetation">
+        <!-- •	A soma de área agricultável e vegetação, não deverá ser maior que a área total da fazenda -->
+        <!-- area de vegetação em hectares -->
+        <label for="vegetation-area">Área de vegetação (em hectares)</label>
+        <input
+          type="string"
+          id="vegetation-area"
+          class="input"
+          formControlName="vegetationArea"
+        >
+        <div *ngIf="form.get('vegetationArea')?.errors && form.get('vegetationArea')?.touched">Campo obrigatório</div>
+      </div>
+    </div>
 
     <!-- culturas plantadas, caixa box para seleção com as oções  Soja, Milho, Algodão, Café, Cana de Açucar-->
     <!-- •	Cada produtor pode plantar mais de uma cultura em sua Fazenda. -->
-    <label for="planted-crops">Culturas Plantadas</label>
-    <input
-      type="text"
-      id="planted-crops"
-      class="input"
-      formControlName="plantedCrops"
-    >
+    <div>
+      <p>Culturas Plantadas</p>
+      <label for="planted-crops">
+          <input
+            type="checkbox"
+            id="planted-crops"
+            class="input"
+            formControlName="plantedCrops"
+          >
+      </label>
+      <label for="planted-crops">
+          <input
+            type="checkbox"
+            id="planted-crops"
+            class="input"
+            formControlName="plantedCrops"
+          >
+      </label>
+      <label for="planted-crops">
+          <input
+            type="checkbox"
+            id="planted-crops"
+            class="input"
+            formControlName="plantedCrops"
+          >
+      </label>
+      <label for="planted-crops">
+          <input
+            type="checkbox"
+            id="planted-crops"
+            class="input"
+            formControlName="plantedCrops"
+          >
+      </label>
+      <label for="planted-crops">
+          <input
+            type="checkbox"
+            id="planted-crops"
+            class="input"
+            formControlName="plantedCrops"
+          >
+      </label>
+      <div *ngIf="form.get('plantedCrops')?.errors && form.get('plantedCrops')?.touched">Campo obrigatório</div>
+    </div>
 
     <div>
       <button class="button-register" (click)="register()">Cadastrar</button>
