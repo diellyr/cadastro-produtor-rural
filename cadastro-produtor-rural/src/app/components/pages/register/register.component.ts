@@ -1,15 +1,20 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterService } from 'src/app/shared/services/register.service';
 import { validateCpfCnpj } from 'src/app/shared/validators/cpf-cnpj/validateCpfCnpj';
 import { StatesService } from 'src/app/shared/services/location/state.service';
 import { CitiesService } from 'src/app/shared/services/location/cities.service';
 
+export interface PlantedCrops {
+  label: string;
+  value: string;
+}
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
 
@@ -19,6 +24,13 @@ export class RegisterComponent implements OnInit {
   selectedState!: string;
   cities!: string[];
   selectedCity!: string;
+  plantedCrops: PlantedCrops[] = [
+    { label: 'Opção1', value: 'opção1'},
+    { label: 'Opção2', value: 'opção2'},
+    { label: 'Opção3', value: 'opção3'},
+    { label: 'Opção4', value: 'opção4'},
+    { label: 'Opção5', value: 'opção5'},
+  ]
 
   constructor(
     private service: RegisterService,
@@ -46,7 +58,7 @@ export class RegisterComponent implements OnInit {
       vegetationArea: ['', Validators.compose([
         Validators.required
       ])],
-      plantedCrops: ['', Validators.required]
+      plantedCrops: []
     });
   }
 
@@ -72,4 +84,5 @@ export class RegisterComponent implements OnInit {
     this.cities = this.citiesService.getCities(this.selectedState);
     this.selectedCity = '';
   }
+
 }

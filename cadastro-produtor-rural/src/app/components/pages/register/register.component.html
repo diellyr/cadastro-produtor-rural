@@ -1,62 +1,69 @@
-<section class="content-form ff-inter">
+<section class="form ff-inter">
   <h1>Realize seu cadastro</h1>
   <form [formGroup]="form">
-    <!-- chamar api que valide cpf ou cnpj -->
-    <!-- •	O sistema deverá validar CPF e CNPJ digitados incorretamente. -->
-    <label for="cpfCnpjField">CPF ou CNPJ</label>
-    <input
-      type="string"
-      id="cpfCnpjField"
-      class="input"
-      formControlName="cpfCnpjField"
-      [ngModel]="cpfCnpjField | cpfCnpjFormat"
-      (ngModelChange)="cpfCnpjField=$event"
-      (input)="onInputChange($event)"
-    >
-    <div *ngIf="form.get('cpfCnpjField')?.errors && form.get('cpfCnpjField')?.touched && !(form.get('cpfCnpjField')?.dirty)">Campo obrigatório</div>
-    <div *ngIf="form.get('cpfCnpjField')?.errors?.['cpfCnpjInvalido'] && form.get('cpfCnpjField')?.dirty">CPF ou CNPJ inválido.</div>
+    <div class="content-form">
+      <label for="cpfCnpjField">CPF ou CNPJ</label>
+      <input
+        type="string"
+        id="cpfCnpjField"
+        class="input"
+        formControlName="cpfCnpjField"
+        [ngModel]="cpfCnpjField | cpfCnpjFormat"
+        (ngModelChange)="cpfCnpjField=$event"
+        (input)="onInputChange($event)"
+      >
+      <div *ngIf="form.get('cpfCnpjField')?.errors && form.get('cpfCnpjField')?.touched && !(form.get('cpfCnpjField')?.dirty)" class="errors">Campo obrigatório</div>
+      <div *ngIf="form.get('cpfCnpjField')?.errors?.['cpfCnpjInvalido'] && form.get('cpfCnpjField')?.dirty">CPF ou CNPJ inválido.</div>
 
-    <!-- nome do produtor -->
-    <label for="name">Seu Nome</label>
-    <input
-      type="text"
-      id="name"
-      class="input"
-      formControlName="name"
-    >
-    <div *ngIf="form.get('name')?.errors && form.get('name')?.touched">Campo obrigatório</div>
+    </div>
 
-    <!-- nome da fazenda -->
-    <label for="farm-name">Nome da Fazenda</label>
-    <input
-      type="text"
-      id="farm-name"
-      class="input"
-      formControlName="farmName"
-    >
-    <div *ngIf="form.get('farmName')?.errors && form.get('farmName')?.touched">Campo obrigatório</div>
+    <div class="content-form">
+      <label for="name">Nome do Produtor</label>
+      <input
+        type="text"
+        id="name"
+        class="input"
+        formControlName="name"
+      >
+      <div *ngIf="form.get('name')?.errors && form.get('name')?.touched">Campo obrigatório</div>
+    </div>
 
-    <div>
-      <label for="state">Estado</label>
-      <select [(ngModel)]="selectedState" id="state" formControlName="state" (change)="onStateChange()">
-        <option *ngFor="let state of states" [value]="state">{{ state }}</option>
-      </select>
-      <div *ngIf="form.get('state')?.errors && form.get('state')?.touched">Campo obrigatório</div>
+    <div class="content-form">
+      <label for="farm-name">Nome da Fazenda</label>
+      <input
+        type="text"
+        id="farm-name"
+        class="input"
+        formControlName="farmName"
+      >
+      <div *ngIf="form.get('farmName')?.errors && form.get('farmName')?.touched">Campo obrigatório</div>
+    </div>
 
-      <label for="city">Cidade</label>
-      <select [(ngModel)]="selectedCity">
-        <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
-      </select>
-      <div *ngIf="form.get('city')?.errors && form.get('city')?.touched">Campo obrigatório</div>
+    <div class="content-selects">
+      <div class="content-select-state">
+        <label for="state">Estado</label>
+        <select [(ngModel)]="selectedState" id="state" formControlName="state" (change)="onStateChange()" class="selecteState">
+          <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+        </select>
+        <div *ngIf="form.get('state')?.errors && form.get('state')?.touched">Campo obrigatório</div>
+      </div>
+
+      <div class="content-select-city">
+        <label for="city">Cidade</label>
+        <select [(ngModel)]="selectedCity" class="selecteCity">
+          <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+        </select>
+        <div *ngIf="form.get('city')?.errors && form.get('city')?.touched">Campo obrigatório</div>
+      </div>
     </div>
 
     <div class="content-area">
       <div class="content-farm">
-        <label for="farm-area">Área total da Fazenda (em hectares)</label>
+        <label for="farm-area">Área total da Fazenda <br>(em hectares)</label>
         <input
           type="string"
           id="farm-area"
-          class="input"
+          class="input-area"
           formControlName="farmArea"
         >
         <div *ngIf="form.get('farmArea')?.errors && form.get('farmArea')?.touched">Campo obrigatório</div>
@@ -65,11 +72,11 @@
       <div class="content-arable">
         <!-- •	A soma de área agricultável e vegetação, não deverá ser maior que a área total da fazenda -->
         <!-- area agricultavel em hectares -->
-        <label for="arable-area">Área agricultável (em hectares)</label>
+        <label for="arable-area">Área agricultável <br>(em hectares)</label>
         <input
           type="sting"
           id="arable-area"
-          class="input"
+          class="input-area"
           formControlName="arableArea"
         >
         <div *ngIf="form.get('arableArea')?.errors && form.get('arableArea')?.touched">Campo obrigatório</div>
@@ -78,11 +85,11 @@
       <div class="content-vegetation">
         <!-- •	A soma de área agricultável e vegetação, não deverá ser maior que a área total da fazenda -->
         <!-- area de vegetação em hectares -->
-        <label for="vegetation-area">Área de vegetação (em hectares)</label>
+        <label for="vegetation-area">Área de vegetação <br>(em hectares)</label>
         <input
           type="string"
           id="vegetation-area"
-          class="input"
+          class="input-area"
           formControlName="vegetationArea"
         >
         <div *ngIf="form.get('vegetationArea')?.errors && form.get('vegetationArea')?.touched">Campo obrigatório</div>
@@ -91,52 +98,22 @@
 
     <!-- culturas plantadas, caixa box para seleção com as oções  Soja, Milho, Algodão, Café, Cana de Açucar-->
     <!-- •	Cada produtor pode plantar mais de uma cultura em sua Fazenda. -->
-    <div>
+    <!-- <div class="content-planted-crops">
       <p>Culturas Plantadas</p>
-      <label for="planted-crops">
-          <input
-            type="checkbox"
-            id="planted-crops"
-            class="input"
-            formControlName="plantedCrops"
-          >
-      </label>
-      <label for="planted-crops">
-          <input
-            type="checkbox"
-            id="planted-crops"
-            class="input"
-            formControlName="plantedCrops"
-          >
-      </label>
-      <label for="planted-crops">
-          <input
-            type="checkbox"
-            id="planted-crops"
-            class="input"
-            formControlName="plantedCrops"
-          >
-      </label>
-      <label for="planted-crops">
-          <input
-            type="checkbox"
-            id="planted-crops"
-            class="input"
-            formControlName="plantedCrops"
-          >
-      </label>
-      <label for="planted-crops">
-          <input
-            type="checkbox"
-            id="planted-crops"
-            class="input"
-            formControlName="plantedCrops"
-          >
-      </label>
-      <div *ngIf="form.get('plantedCrops')?.errors && form.get('plantedCrops')?.touched">Campo obrigatório</div>
-    </div>
+      <div *ngFor="let crop of plantedCrops">
+        <label for="planted-crops">
+            <input
+              type="checkbox"
+              class="input"
+              [formControlName]="plantedCrops.value"
+            > {{ plantedCrops.label }}
+        </label>
+      </div>
 
-    <div>
+      <div *ngIf="form.get('plantedCrops')?.errors && form.get('plantedCrops')?.touched">Campo obrigatório</div>
+    </div> -->
+
+    <div class="buttons">
       <button class="button-register" (click)="register()">Cadastrar</button>
       <button class="button-cancel" (click)="cancel()">Cancelar</button>
     </div>

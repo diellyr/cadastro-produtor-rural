@@ -1,0 +1,97 @@
+.form {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  padding-right: 20rem;
+  padding-left: 20rem;
+}
+
+.form form .input {
+  border: none;
+  height: 40px;
+  padding: 1rem 2rem;
+  border-radius: 20px;
+  margin: 0.5rem 0 0rem;
+  background-color: #cce0e0;
+}
+
+.content-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-area {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.input-area {
+  border: none;
+  height: 40px;
+  width: 100px;
+  padding: 1rem 2rem;
+  border-radius: 20px;
+  margin: 0.5rem 0 2rem;
+  background-color: #cce0e0;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-farm, .content-arable {
+  margin-right: 60px;
+}
+
+.content-selects {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.selecteState, .selecteCity {
+  border: none;
+  height: 60px;
+  width: 300px;
+  border-radius: 20px;
+  margin: 0.5rem 0 0rem;
+  background-color: #cce0e0;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-form{
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.errors {
+  margin-top: 10px;
+}
+
+.buttons{
+  display: flex;
+  justify-content: space-evenly;
+
+  .button-cancel, .button-register {
+    border: none;
+    height: 60px;
+    width: 200px;
+    border-radius: 20px;
+    margin: 0.5rem 0 0rem;
+    background-color: #48a1af;
+    cursor: pointer;
+  }
+
+  .button-cancel:hover{
+    background-color: gray;
+  }
+
+  .button-register:hover{
+    background-color: #e2bd86;
+  }
+}
+
+
+
+
+
