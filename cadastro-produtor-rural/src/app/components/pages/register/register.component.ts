@@ -1,10 +1,11 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RegisterService } from 'src/app/shared/services/register.service';
+
 import { validateCpfCnpj } from 'src/app/shared/validators/cpf-cnpj/validateCpfCnpj';
 import { StatesService } from 'src/app/shared/services/location/state.service';
 import { CitiesService } from 'src/app/shared/services/location/cities.service';
+import { RegisterService } from 'src/app/shared/services/register-services/register.service';
 
 @Component({
   selector: 'app-register',
@@ -39,7 +40,7 @@ export class RegisterComponent implements OnInit {
       producerName: ['', Validators.required],
       farmName: ['', Validators.required],
       state: ['', Validators.required],
-      city: ['', Validators.required],
+      city: [''],
       farmArea:  ['', Validators.compose([
         Validators.required
       ])],

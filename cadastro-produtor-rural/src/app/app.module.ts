@@ -7,9 +7,10 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
-import { RegisterComponent } from './components/pages/register/register.component';
+
 import { HomeComponent } from './components/pages/home/home.component';
 import { SharedModule } from './shared/shared.module';
+import { RegisterComponent } from './components/pages/register/register.component';
 
 @NgModule({
   declarations: [
