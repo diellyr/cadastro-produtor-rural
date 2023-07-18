@@ -39,5 +39,5 @@ Acesse o projeto em seu navegador:
 Em outro terminal, inicie o JSON Server para simular o backend:
   - cd backend
   - npm start
-  - 
+    
 O arquivo db.json contém os dados simulados do backend, criados e gerenciados pelo JSON Server.
