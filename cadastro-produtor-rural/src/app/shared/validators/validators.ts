@@ -49,15 +49,15 @@ export class Validators {
     if (!cnpj) {
       return false;
     }
-    cnpj = cnpj.replace(/\D/g, ''); // Remover caracteres especiais
+    cnpj = cnpj.replace(/\D/g, ''); // Remove special characters
 
     if (cnpj.length !== 14) {
       return false;
     }
 
-    // Validar dígitos verificadores
+    // Validate dígitos verificadores
     const validateDigit = (digits: string): boolean => {
-      const weights = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+      const weights = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
       const calculateDigit = (base: string): number => {
         const sum = base.split('').reduce((acc, digit, i) => {
           const weight = weights[i];
@@ -67,8 +67,8 @@ export class Validators {
         return remainder < 2 ? 0 : 11 - remainder;
       };
       const base = digits.slice(0, -2);
-      const expectedDigit1 = calculateDigit(base + digits[digits.length - 2]);
-      const expectedDigit2 = calculateDigit(base + digits[digits.length - 2] + expectedDigit1.toString());
+      const expectedDigit1 = calculateDigit(base);
+      const expectedDigit2 = calculateDigit(base + expectedDigit1.toString());
       return (
         digits[digits.length - 2] === expectedDigit1.toString() &&
         digits[digits.length - 1] === expectedDigit2.toString()

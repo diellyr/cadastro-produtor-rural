@@ -1,17 +1,14 @@
 .form {
   margin-top: 100px;
   margin-bottom: 100px;
-  padding-right: 20rem;
-  padding-left: 20rem;
+  padding-right: 200px;
+  padding-left: 200px;
 }
 
-.form form .input {
-  border: none;
-  height: 40px;
-  padding: 1rem 2rem;
-  border-radius: 20px;
-  margin: 0.5rem 0 0rem;
-  background-color: #cce0e0;
+.content-form{
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
 }
 
 .content-form form {
@@ -19,19 +16,22 @@
   flex-direction: column;
 }
 
-.content-area {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
+.form form .input {
+  border: none;
+  height: 40px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin-top: 5px;
+  background-color: #cce0e0;
 }
 
 .input-area {
   border: none;
   height: 40px;
-  width: 100px;
-  padding: 1rem 2rem;
+  width: 150px;
+  padding: 10px 20px;
   border-radius: 20px;
-  margin: 0.5rem 0 2rem;
+  margin-top: 5px;
   background-color: #cce0e0;
   display: flex;
   flex-direction: column;
@@ -41,43 +41,56 @@
   margin-right: 60px;
 }
 
-.content-selects {
+.content-selects, .content-area, .content-planted-crops {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
-.selecteState, .selecteCity {
+.custom-select {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
   border: none;
   height: 60px;
-  width: 300px;
+  width: 400px;
   border-radius: 20px;
-  margin: 0.5rem 0 0rem;
+  margin-top: 5px;
   background-color: #cce0e0;
   display: flex;
   flex-direction: column;
 }
 
-.content-form{
+.custom-checkbox input{
+  margin-right: 10px;
+
+}
+
+.custom-checkbox {
+  align-items: center;
+  margin-top: 10px;
+}
+
+.content-planted-crops {
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
 }
 
 .errors {
-  margin-top: 10px;
+  margin-top: 5px;
+  color: red;
 }
 
 .buttons{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
 
   .button-cancel, .button-register {
     border: none;
     height: 60px;
     width: 200px;
     border-radius: 20px;
-    margin: 0.5rem 0 0rem;
+    margin-top: 30px;
+    margin-right: 20px;
     background-color: #48a1af;
     cursor: pointer;
   }
@@ -92,6 +105,14 @@
 }
 
 
+@media (max-width: 1000px) {
+  .content-selects, .content-area, .content-planted-crops  {
+    flex-direction: column;
+  }
 
+  .content-arable, .content-vegetation {
+    margin-top: 20px;
+  }
+}
 
 

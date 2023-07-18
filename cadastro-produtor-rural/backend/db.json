@@ -7,6 +7,7 @@
       "farmName": "Fazenda da Laura",
       "state": "São Paulo",
       "city": "Boituva",
+      "farmArea": 22222,
       "arableArea": 100000,
       "vegetationArea": 111111,
       "plantedCrops": [

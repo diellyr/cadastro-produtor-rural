@@ -1,15 +1,10 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterService } from 'src/app/shared/services/register.service';
 import { validateCpfCnpj } from 'src/app/shared/validators/cpf-cnpj/validateCpfCnpj';
 import { StatesService } from 'src/app/shared/services/location/state.service';
 import { CitiesService } from 'src/app/shared/services/location/cities.service';
-
-export interface PlantedCrops {
-  label: string;
-  value: string;
-}
 
 @Component({
   selector: 'app-register',
@@ -22,15 +17,8 @@ export class RegisterComponent implements OnInit {
   cpfCnpjField!: string;
   states!: string[];
   selectedState!: string;
-  cities!: string[];
+  cities: string[] = [];
   selectedCity!: string;
-  plantedCrops: PlantedCrops[] = [
-    { label: 'Opção1', value: 'opção1'},
-    { label: 'Opção2', value: 'opção2'},
-    { label: 'Opção3', value: 'opção3'},
-    { label: 'Opção4', value: 'opção4'},
-    { label: 'Opção5', value: 'opção5'},
-  ]
 
   constructor(
     private service: RegisterService,
@@ -48,24 +36,36 @@ export class RegisterComponent implements OnInit {
         Validators.required,
         validateCpfCnpj
       ])],
-      name: ['', Validators.required],
+      producerName: ['', Validators.required],
       farmName: ['', Validators.required],
       state: ['', Validators.required],
       city: ['', Validators.required],
+      farmArea:  ['', Validators.compose([
+        Validators.required
+      ])],
       arableArea: ['', Validators.compose([
         Validators.required
       ])],
       vegetationArea: ['', Validators.compose([
         Validators.required
       ])],
-      plantedCrops: []
+      plantedCrops: [],
+    });
+    this.form.get('state')?.setValue('');
+    this.form.get('city')?.setValue('');
+
+    this.form.get('plantedCrops')?.valueChanges.subscribe((selectedCrops: string[]) => {
+      console.log('Culturas Plantadas selecionadas:', selectedCrops);
     });
   }
 
   register() {
+    console.log(this.form.value);
     if(this.form.valid){
       this.service.create(this.form.value).subscribe(() => {
         this.router.navigate(['/home'])
+        console.log('cheguei');
+
       })
     }
   }
@@ -81,8 +81,9 @@ export class RegisterComponent implements OnInit {
   }
 
   onStateChange() {
-    this.cities = this.citiesService.getCities(this.selectedState);
-    this.selectedCity = '';
+    const selectedState = this.form.get('state')?.value;
+    this.cities = this.citiesService.getCities(selectedState);
+    this.form.get('city')?.setValue('');
   }
 
 }

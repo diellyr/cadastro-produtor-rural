@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CitiesService {
-  private cities: { [state: string]: string[] } = {
+  private citiesByState: { [state: string]: string[] } = {
     'Acre': ['Rio Branco', 'Cruzeiro do Sul', 'Tarauacá', 'Sena Madureira', 'Brasiléia', 'Feijó'],
     'Alagoas': ['Maceió', 'Arapiraca', 'Rio Largo', 'Palmeira dos Índios', 'Marechal Deodoro', 'São Miguel dos Campos'],
     'Amapá': ['Macapá', 'Santana', 'Laranjal do Jari', 'Oiapoque', 'Porto Grande', 'Mazagão'],
@@ -35,6 +35,6 @@ export class CitiesService {
   };
 
   getCities(state: string): string[] {
-    return this.cities[state] || [];
+    return this.citiesByState[state] || [];
   }
 }
