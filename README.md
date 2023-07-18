@@ -34,7 +34,7 @@ Inicie o servidor de desenvolvimento:
   - ng serve
 
 Acesse o projeto em seu navegador:
-  - http://localhost:4200/}
+  - http://localhost:4200/
 
 Em outro terminal, inicie o JSON Server para simular o backend:
   - cd backend
