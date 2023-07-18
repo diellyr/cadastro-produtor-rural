@@ -1,27 +1,18 @@
-# CadastroProdutorRural
+#Cadastro Produtor Rural
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.6.
+![image](https://github.com/andradethalita/cadastro-produtor-rural/assets/82850176/8edfeb74-8f4b-421b-8d05-39a9a84fa175)
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+##Descrição do Projeto
+O Cadastro Produtor Rural é um projeto desenvolvido para simplificar e otimizar o processo de cadastro de produtores rurais. Com o objetivo de fornecer uma plataforma intuitiva e fácil de usar, este sistema permite que produtores rurais insiram seus dados pessoais e informações sobre suas propriedades.
 
-## Code scaffolding
+##Funcionalidades
+Cadastro de Produtores: Os produtores rurais podem se cadastrar na plataforma fornecendo informações pessoais e de sua propriedade.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Edição e Exclusão: Os produtos cadastrados podem atualizar suas informações ou realizar a exclusão de seus dados.
 
-## Build
+Dashboard: O sistema oferece um dashboard com gráficos e estatísticas para melhor visualização das informações cadastradas, permitindo uma análise mais eficiente dos dados.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+##Tecnologias Utilizadas
+Angular: versão 14.0.7
+TypeScript: versão 4.7.4
