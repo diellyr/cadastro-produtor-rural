@@ -15,4 +15,5 @@ Dashboard: O sistema oferece um dashboard com gráficos e estatísticas para mel
 
 ## Tecnologias Utilizadas
 Angular: versão 14.0.7
+
 TypeScript: versão 4.7.4
