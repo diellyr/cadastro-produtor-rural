@@ -11,8 +11,12 @@
         [value]="form.get('cpfCnpjField')?.value | cpfCnpjFormat"
         (input)="onInputChange($event)"
       >
-      <div *ngIf="form.get('cpfCnpjField')?.errors && form.get('cpfCnpjField')?.touched && !(form.get('cpfCnpjField')?.dirty)" class="errors">Campo obrigatório</div>
-      <div *ngIf="form.get('cpfCnpjField')?.errors?.['cpfCnpjInvalido'] && form.get('cpfCnpjField')?.dirty" class="errors">CPF ou CNPJ inválido.</div>
+      <div *ngIf="(form.get('cpfCnpjField')?.errors && form.get('cpfCnpjField')?.touched && !(form.get('cpfCnpjField')?.dirty)) || (submitAttempted && form.get('cpfCnpjField')?.errors && !(form.get('cpfCnpjField')?.dirty))" class="errors">
+        Campo obrigatório
+      </div>
+      <div *ngIf="form.get('cpfCnpjField')?.errors?.['cpfCnpjInvalido'] && form.get('cpfCnpjField')?.dirty" class="errors">
+        CPF ou CNPJ inválido.
+      </div>
     </div>
 
     <div class="content-form">
@@ -23,7 +27,7 @@
         class="input"
         formControlName="producerName"
       >
-      <div *ngIf="form.get('producerName')?.errors && form.get('producerName')?.touched" class="errors">Campo obrigatório</div>
+      <div *ngIf="form.get('producerName')?.errors && form.get('producerName')?.touched || (submitAttempted && form.get('producerName')?.invalid)" class="errors">Campo obrigatório</div>
     </div>
 
     <div class="content-form">
@@ -34,24 +38,24 @@
         class="input"
         formControlName="farmName"
       >
-      <div *ngIf="form.get('farmName')?.errors && form.get('farmName')?.touched" class="errors">Campo obrigatório</div>
+      <div *ngIf="form.get('farmName')?.errors && form.get('farmName')?.touched || (submitAttempted && form.get('farmName')?.invalid)" class="errors">Campo obrigatório</div>
     </div>
 
     <div class="content-selects">
       <div class="content-select-state">
         <label for="state">Estado</label>
-        <select id="state" formControlName="state" class="custom-select">
+        <select id="state" formControlName="state" class="custom-select .ff-roboto-mono" (change)="onStateChange()">
           <option *ngFor="let state of states" [value]="state">{{ state }}</option>
         </select>
-        <div *ngIf="form.get('state')?.errors && form.get('state')?.touched" class="errors">Campo obrigatório</div>
+        <div *ngIf="form.get('state')?.errors && form.get('state')?.touched || (submitAttempted && form.get('state')?.invalid)" class="errors">Campo obrigatório</div>
       </div>
 
       <div class="content-select-city">
         <label for="city">Cidade</label>
-        <select id="city" formControlName="city" class="custom-select">
+        <select id="city" formControlName="city" class="custom-select .ff-roboto-mono">
           <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
         </select>
-        <div *ngIf="form.get('city')?.errors && form.get('city')?.touched" class="errors">Campo obrigatório</div>
+        <div *ngIf="form.get('city')?.errors && form.get('city')?.touched || (submitAttempted && form.get('city')?.invalid)" class="errors">Campo obrigatório</div>
       </div>
     </div>
 
@@ -59,12 +63,16 @@
       <div class="content-farm">
         <label for="farm-area">Área total da Fazenda <br>(em hectares)</label>
         <input
-          type="string"
+          type="text"
           id="farm-area"
           class="input-area"
           formControlName="farmArea"
+          [value]="form.get('farmArea')?.value"
         >
-        <div *ngIf="form.get('farmArea')?.errors && form.get('farmArea')?.touched" class="errors">Campo obrigatório</div>
+        <div class="errors">
+          <div *ngIf="(form.get('farmArea')?.errors && form.get('farmArea')?.touched && !(form.get('farmArea')?.dirty)) || (submitAttempted && form.get('farmArea')?.invalid && !(form.get('farmArea')?.dirty))">Campo obrigatório</div>
+          <div *ngIf="form.get('farmArea')?.errors?.['hectaresInvalidos'] && form.get('farmArea')?.dirty">Valor inválido em hectares</div>
+        </div>
       </div>
 
       <div class="content-arable">
@@ -75,7 +83,10 @@
           class="input-area"
           formControlName="arableArea"
         >
-        <div *ngIf="form.get('arableArea')?.errors && form.get('arableArea')?.touched" class="errors">Campo obrigatório</div>
+        <div class="errors">
+          <div *ngIf="(form.get('arableArea')?.errors && form.get('arableArea')?.touched && !(form.get('arableArea')?.dirty)) || (submitAttempted && form.get('arableArea')?.invalid && !(form.get('arableArea')?.dirty))">Campo obrigatório</div>
+          <div *ngIf="form.get('arableArea')?.errors?.['hectaresInvalidos'] && form.get('arableArea')?.dirty">Valor inválido em hectares</div>
+        </div>
       </div>
 
       <div class="content-vegetation">
@@ -86,48 +97,20 @@
           class="input-area"
           formControlName="vegetationArea"
         >
-        <div *ngIf="form.get('vegetationArea')?.errors && form.get('vegetationArea')?.touched" class="errors">Campo obrigatório</div>
+        <div class="errors">
+          <div *ngIf="(form.get('vegetationArea')?.errors && form.get('vegetationArea')?.touched && !(form.get('vegetationArea')?.dirty)) || (submitAttempted && form.get('vegetationArea')?.invalid && !(form.get('vegetationArea')?.dirty))">Campo obrigatório</div>
+          <div *ngIf="form.get('vegetationArea')?.errors?.['hectaresInvalidos'] && form.get('vegetationArea')?.dirty">Valor inválido em hectares</div>
+        </div>
       </div>
     </div>
 
-    <div class="content-planted-crops">
+    <div class="content-planted-crops" formArrayName="plantedCrops">
       <p>Culturas Plantadas:</p>
-      <label for="planted-crops-milho" class="custom-checkbox">
-        <input
-          type="checkbox"
-          formControlName="plantedCrops"
-          id="planted-crops-milho"
-        >Milho
+      <label *ngFor="let cropLabel of plantedCropsLabels; let i = index" [for]="'planted-crops-' + i" class="custom-checkbox">
+        <input type="checkbox" [formControlName]="i" [id]="'planted-crops-' + i">
+        {{ cropLabel }}
       </label>
-      <label for="planted-crops-soja" class="custom-checkbox">
-        <input
-          type="checkbox"
-          formControlName="plantedCrops"
-          id="planted-crops-soja"
-        >Soja
-      </label>
-      <label for="planted-crops-trigo" class="custom-checkbox">
-        <input
-          type="checkbox"
-          formControlName="plantedCrops"
-          id="planted-crops-trigo"
-        >Trigo
-      </label>
-      <label for="planted-crops-algodao" class="custom-checkbox">
-        <input
-          type="checkbox"
-          formControlName="plantedCrops"
-          id="planted-crops-algodao"
-        >Algodão
-      </label>
-      <label for="planted-crops-check" class="custom-checkbox">
-        <input
-          type="checkbox"
-          formControlName="plantedCrops"
-          id="planted-crops-mandioca"
-        >Mandioca
-      </label>
-      <div *ngIf="form.get('plantedCrops')?.errors && form.get('plantedCrops')?.touched" class="errors">Campo obrigatório</div>
+      <div *ngIf="submitAttempted && form.get('plantedCrops')?.invalid" class="errors">Campo obrigatório</div>
     </div>
 
     <div class="buttons">
@@ -139,15 +122,10 @@
 </section>
 
 <!--
-  BUGS
+  Funcionalidade faltantes:
+  - Validar se a area de vegetação mais a area agricultavel corresponde a area total da fazenda, o valor não pode ser maior que a area total
+  - Culturas selecionadas devem vim com os nomes que foram registrados na label e não como true ou false
 
-  - Esta valindando CPF, mas não esta validando CNPJ
-
-  - As cidades não estão vindo conforme o estado
-
-  - Validação da area da fazenda em hectares
-  - Validação da area de vegetação em hectares
-  - Validação da area agricultavel em hectares
-
-  - Validação das culturas selecionadas
+  Layout
+  - Estilizar as String dos selects depois que a opção é selecionada
  -->

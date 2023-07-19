@@ -4,9 +4,9 @@ export interface Register {
   producerName: string
   farmName: string
   state: string
-  city?: string
-  farmArea: number
-  arableArea: number
-  vegetationArea: number
+  city: string
+  farmArea: string
+  arableArea: string
+  vegetationArea: string
   plantedCrops: string[]
 }

@@ -1,5 +1,5 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { Validators } from './validators';
+import { Validators } from '../validators';
 
 
 export const validateCpfCnpj: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {

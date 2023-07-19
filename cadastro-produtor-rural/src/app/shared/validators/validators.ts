@@ -5,7 +5,7 @@ export class Validators {
     }
     cpf = cpf.replace(/\D/g, '');
 
-    if (cpf.length !== 11) {
+    if (cpf.length < 11 || cpf.length > 11 && cpf.length < 14) {
       return false;
     }
 
@@ -49,9 +49,9 @@ export class Validators {
     if (!cnpj) {
       return false;
     }
-    cnpj = cnpj.replace(/\D/g, ''); // Remove special characters
+    cnpj = cnpj.replace(/\D/g, '');
 
-    if (cnpj.length !== 14) {
+    if (cnpj.length < 11 || cnpj.length > 11 && cnpj.length < 14) {
       return false;
     }
 
