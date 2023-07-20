@@ -17,4 +17,13 @@ export class RegisterService {
   create(register: Register): Observable<Register> {
     return this.http.post<Register>(this.API, register)
   }
+
+  getRegisteredItems(): Observable<Register[]> {
+    return this.http.get<Register[]>(this.API);
+  }
+
+  deleteItem(id: number): Observable<void> {
+    const url = `${this.API}/${id}`;
+    return this.http.delete<void>(url);
+  }
 }
