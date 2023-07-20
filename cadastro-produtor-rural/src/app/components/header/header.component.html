@@ -1,6 +1,15 @@
 <header class="header ff-inter">
-  <a routerLink="/home">
-    <img src="../../../assets/img/agricultor.png" alt="">
-  </a>
-  <h1>Cadastro Produtor Rural</h1>
+  <div class="logo-title">
+    <a routerLink="/home">
+      <img src="../../../assets/img/agricultor.png" alt="">
+    </a>
+    <h1>Cadastro Produtor Rural</h1>
+  </div>
+
+  <nav *ngIf="isHomePage">
+    <ul>
+      <li><a routerLink="/producer-list">Lista de Produtores</a></li>
+      <li><a routerLink="/dashboard">Dashboard</a></li>
+    </ul>
+  </nav>
 </header>

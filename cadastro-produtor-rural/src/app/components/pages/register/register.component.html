@@ -59,47 +59,50 @@
       </div>
     </div>
 
-    <div class="content-area">
-      <div class="content-farm">
-        <label for="farm-area">Área total da Fazenda <br>(em hectares)</label>
-        <input
-          type="text"
-          id="farm-area"
-          class="input-area"
-          formControlName="farmArea"
-          [value]="form.get('farmArea')?.value"
-        >
-        <div class="errors">
-          <div *ngIf="(form.get('farmArea')?.errors && form.get('farmArea')?.touched && !(form.get('farmArea')?.dirty)) || (submitAttempted && form.get('farmArea')?.invalid && !(form.get('farmArea')?.dirty))">Campo obrigatório</div>
-          <div *ngIf="form.get('farmArea')?.errors?.['hectaresInvalidos'] && form.get('farmArea')?.dirty">Valor inválido em hectares</div>
+    <div >
+      <div class="content-area">
+        <div class="content-farm">
+          <label for="farm-area">Área total da Fazenda <br>(em hectares)</label>
+          <input type="text" id="farm-area" class="input-area" formControlName="farmArea"
+            [value]="form.get('farmArea')?.value">
+          <div class="errors">
+            <div
+              *ngIf="(form.get('farmArea')?.errors && form.get('farmArea')?.touched && !(form.get('farmArea')?.dirty)) || (submitAttempted && form.get('farmArea')?.invalid && !(form.get('farmArea')?.dirty))">
+              Campo obrigatório</div>
+            <div *ngIf="form.get('farmArea')?.errors?.['hectaresInvalidos'] && form.get('farmArea')?.dirty">Valor inválido
+              em hectares</div>
+          </div>
+        </div>
+
+        <div class="content-arable">
+          <label for="arable-area">Área agricultável <br>(em hectares)</label>
+          <input type="sting" id="arable-area" class="input-area" formControlName="arableArea">
+          <div class="errors">
+            <div
+              *ngIf="(form.get('arableArea')?.errors && form.get('arableArea')?.touched && !(form.get('arableArea')?.dirty)) || (submitAttempted && form.get('arableArea')?.invalid && !(form.get('arableArea')?.dirty))">
+              Campo obrigatório</div>
+            <div *ngIf="form.get('arableArea')?.errors?.['hectaresInvalidos'] && form.get('arableArea')?.dirty">Valor
+              inválido em hectares</div>
+          </div>
+        </div>
+
+        <div class="content-vegetation">
+          <label for="vegetation-area">Área de vegetação <br>(em hectares)</label>
+          <input type="string" id="vegetation-area" class="input-area" formControlName="vegetationArea">
+          <div class="errors">
+            <div
+              *ngIf="(form.get('vegetationArea')?.errors && form.get('vegetationArea')?.touched && !(form.get('vegetationArea')?.dirty)) || (submitAttempted && form.get('vegetationArea')?.invalid && !(form.get('vegetationArea')?.dirty))">
+              Campo obrigatório</div>
+            <div *ngIf="form.get('vegetationArea')?.errors?.['hectaresInvalidos'] && form.get('vegetationArea')?.dirty">
+              Valor inválido em hectares</div>
+          </div>
         </div>
       </div>
 
-      <div class="content-arable">
-        <label for="arable-area">Área agricultável <br>(em hectares)</label>
-        <input
-          type="sting"
-          id="arable-area"
-          class="input-area"
-          formControlName="arableArea"
-        >
-        <div class="errors">
-          <div *ngIf="(form.get('arableArea')?.errors && form.get('arableArea')?.touched && !(form.get('arableArea')?.dirty)) || (submitAttempted && form.get('arableArea')?.invalid && !(form.get('arableArea')?.dirty))">Campo obrigatório</div>
-          <div *ngIf="form.get('arableArea')?.errors?.['hectaresInvalidos'] && form.get('arableArea')?.dirty">Valor inválido em hectares</div>
-        </div>
-      </div>
 
-      <div class="content-vegetation">
-        <label for="vegetation-area">Área de vegetação <br>(em hectares)</label>
-        <input
-          type="string"
-          id="vegetation-area"
-          class="input-area"
-          formControlName="vegetationArea"
-        >
-        <div class="errors">
-          <div *ngIf="(form.get('vegetationArea')?.errors && form.get('vegetationArea')?.touched && !(form.get('vegetationArea')?.dirty)) || (submitAttempted && form.get('vegetationArea')?.invalid && !(form.get('vegetationArea')?.dirty))">Campo obrigatório</div>
-          <div *ngIf="form.get('vegetationArea')?.errors?.['hectaresInvalidos'] && form.get('vegetationArea')?.dirty">Valor inválido em hectares</div>
+      <div class="errors">
+        <div *ngIf="form.hasError('areasExceeded') && form.get('arableArea')?.dirty && form.get('vegetationArea')?.dirty">
+          A soma das áreas agricultáveis e de vegetação não pode exceder a área total da fazenda.
         </div>
       </div>
     </div>
@@ -123,7 +126,6 @@
 
 <!--
   Funcionalidade faltantes:
-  - Validar se a area de vegetação mais a area agricultavel corresponde a area total da fazenda, o valor não pode ser maior que a area total
   - Culturas selecionadas devem vim com os nomes que foram registrados na label e não como true ou false
 
   Layout

@@ -8,6 +8,7 @@ import { StatesService } from 'src/app/shared/services/location/state.service';
 import { CitiesService } from 'src/app/shared/services/location/cities.service';
 import { RegisterService } from 'src/app/shared/services/register-services/register.service';
 import { atLeastOneCheckboxSelectedValidator } from 'src/app/shared/validators/checkcox-validator/checkebox-selected-validator';
+import { sumAreaValidator } from 'src/app/shared/validators/area/sum-area-validator';
 
 @Component({
   selector: 'app-register',
@@ -23,7 +24,7 @@ export class RegisterComponent implements OnInit {
   cities!: string[];
   farmName!: string;
   submitAttempted: boolean = false;
-  plantedCropsLabels = ['Milho', 'Soja', 'Trigo', 'Algodão', 'Mandioca'];
+  plantedCropsLabels = ['Milho', 'Soja', 'Café', 'Algodão', 'Cana de Açucar'];
   plantedCropsValues: string[] = [];
 
   constructor(
@@ -59,7 +60,8 @@ export class RegisterComponent implements OnInit {
         hectaresValidator
       ])],
       plantedCrops: this.formBuilder.array([], atLeastOneCheckboxSelectedValidator)
-    });
+    }, { validator: sumAreaValidator });
+
     this.form.get('state')?.setValue('');
     this.onStateChange();
     this.form.get('plantedCrops')?.valueChanges.subscribe((selectedCrops: boolean[]) => {

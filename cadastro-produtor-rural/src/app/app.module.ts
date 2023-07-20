@@ -11,6 +11,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { SharedModule } from './shared/shared.module';
 import { RegisterComponent } from './components/pages/register/register.component';
+import { ProducerListComponent } from './components/pages/producer-list/producer-list.component';
+import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { RegisterComponent } from './components/pages/register/register.componen
     FooterComponent,
     HeaderComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    ProducerListComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
