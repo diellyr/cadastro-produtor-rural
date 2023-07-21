@@ -64,12 +64,12 @@ export class RegisterComponent implements OnInit {
 
     this.form.get('state')?.setValue('');
     this.onStateChange();
+
+    this.populatePlantedCrops();
     this.form.get('plantedCrops')?.valueChanges.subscribe((selectedCrops: boolean[]) => {
       this.updateSelectedPlantedCrops(selectedCrops);
-      console.log(selectedCrops);
-
+      console.log('O QUE EU GUARDO', this.plantedCropsValues);
     });
-      this.populatePlantedCrops();
   }
 
   register() {
@@ -103,17 +103,16 @@ export class RegisterComponent implements OnInit {
   populatePlantedCrops() {
     const plantedCropsArray = this.form.get('plantedCrops') as FormArray;
     this.plantedCropsLabels.forEach((label) => {
-      plantedCropsArray.push(this.formBuilder.control(false));
-    });
-  }
-
-  updateSelectedPlantedCrops(selectedCrops: boolean[]) {
-    this.plantedCropsValues = [];
-    selectedCrops.forEach((selected, index) => {
-      if (selected) {
-        this.plantedCropsValues.push(this.plantedCropsLabels[index]);
+      const isSelected = this.plantedCropsValues.includes(label);
+      if (isSelected) {
+        plantedCropsArray.push(this.formBuilder.control(label));
+      } else {
+        plantedCropsArray.push(this.formBuilder.control(''));
       }
     });
   }
 
+  updateSelectedPlantedCrops(selectedCrops: boolean[]) {
+    this.plantedCropsValues = this.plantedCropsLabels.filter((_, index) => selectedCrops[index]);
+  }
 }

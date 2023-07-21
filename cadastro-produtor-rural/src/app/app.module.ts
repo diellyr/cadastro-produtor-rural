@@ -13,6 +13,7 @@ import { SharedModule } from './shared/shared.module';
 import { RegisterComponent } from './components/pages/register/register.component';
 import { ProducerListComponent } from './components/pages/producer-list/producer-list.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
+import { EditRegisterComponent } from './components/pages/edit-register/edit-register.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DashboardComponent } from './components/pages/dashboard/dashboard.compo
     RegisterComponent,
     HomeComponent,
     ProducerListComponent,
-    DashboardComponent
+    DashboardComponent,
+    EditRegisterComponent
   ],
   imports: [
     BrowserModule,

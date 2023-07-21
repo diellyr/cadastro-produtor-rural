@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Register } from 'src/app/interfaces/register';
 import { RegisterService } from 'src/app/shared/services/register-services/register.service';
 
@@ -10,6 +10,18 @@ import { RegisterService } from 'src/app/shared/services/register-services/regis
 export class ProducerListComponent implements OnInit {
 
   registeredItems: Register[] = [];
+  @Input() register: Register = {
+    id: 0,
+    cpfCnpjField: '',
+    producerName: '',
+    farmName: '',
+    state: '',
+    city: '',
+    farmArea: '',
+    arableArea: '',
+    vegetationArea: '',
+    plantedCrops: []
+  }
 
   constructor(
     private registerService: RegisterService,

@@ -4,6 +4,7 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { RegisterComponent } from './components/pages/register/register.component';
 import { ProducerListComponent } from './components/pages/producer-list/producer-list.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
+import { EditRegisterComponent } from './components/pages/edit-register/edit-register.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent
+  },
+  {
+    path: 'register/edit-register/:id',
+    component: EditRegisterComponent
   }
 ];
 

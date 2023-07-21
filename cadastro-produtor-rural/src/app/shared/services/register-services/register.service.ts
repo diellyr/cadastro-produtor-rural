@@ -26,4 +26,14 @@ export class RegisterService {
     const url = `${this.API}/${id}`;
     return this.http.delete<void>(url);
   }
+
+  edit(register: Register): Observable<Register> {
+    const url = `${this.API}/${register.id}`
+    return this.http.put<Register>(url, register )
+  }
+
+  searchById(id: number): Observable<Register> {
+    const url = `${this.API}/${id}`
+    return this.http.get<Register>(url)
+  }
 }
