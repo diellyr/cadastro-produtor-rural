@@ -23,7 +23,10 @@ jobs:
 
     - name: Build
       run: cd /home/runner/work/cadastro-produtor-rural/cadastro-produtor-rural/cadastro-produtor-rural && ls -lah  && npm run build --if-present
-     
+    
+    - name: List directory contents
+      run: pwd && ls -lah dist/cadastro-produtor-rural
+ 
     - name: Ler variaveis
       run: echo ${{ secrets.AWS_ACCESS_KEY_ID }} && echo ${{ secrets.AWS_SECRET_ACCESS_KEY }} && echo ${{ secrets.AWS_REGION  }}
       
