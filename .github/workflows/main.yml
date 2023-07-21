@@ -22,7 +22,7 @@ jobs:
       run: cd /home/runner/work/cadastro-produtor-rural/cadastro-produtor-rural/cadastro-produtor-rural && ls -lah  && npm ci
 
     - name: Build
-      run: npm run build --if-present
+      run: cd /home/runner/work/cadastro-produtor-rural/cadastro-produtor-rural/cadastro-produtor-rural && ls -lah  && npm run build --if-present
 
     - name: Deploy to S3
       uses: jakejarvis/s3-sync-action@master
