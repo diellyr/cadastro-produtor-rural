@@ -3,7 +3,7 @@ name: CI/CD Workflow
 on:
   push:
     branches: 
-      - master  # substitua por sua branch de deploy
+      - main  # substitua por sua branch de deploy
 
 jobs:
   build:
