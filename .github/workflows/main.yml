@@ -17,15 +17,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 14.x
-    
-    - name: alterar diretorio
-      run: cd /home/runner/work/cadastro-produtor-rural/cadastro-produtor-rural/cadastro-produtor-rural 
-        
-    - name: listar arquivos
-      run: ls -lah    
-        
-    - name: Install Dependencies
-      run: npm ci
+         
+    - name: Install Dependencies    
+      run: cd /home/runner/work/cadastro-produtor-rural/cadastro-produtor-rural/cadastro-produtor-rural && ls -lah  && npm ci
 
     - name: Build
       run: npm run build --if-present
