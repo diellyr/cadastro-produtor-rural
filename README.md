@@ -18,6 +18,12 @@ Angular: versão 14.0.7
 
 TypeScript: versão 4.7.4
 
+## Pré requisitos para rodar o projeto
+
+- Angular Intalado
+- Node Instalado 
+- Json Server instalado
+
 ## Instalação
 Siga as instruções abaixo para executar o projeto em seu ambiente local:
 
@@ -31,13 +37,14 @@ Instale as dependências do projeto:
   - npm install
 
 Inicie o servidor de desenvolvimento:
-  - ng serve
+  - ng run start
 
 Acesse o projeto em seu navegador:
   - http://localhost:4200/
 
 Em outro terminal, inicie o JSON Server para simular o backend:
   - cd backend
+  - npm install 
   - npm start
     
 O arquivo db.json contém os dados simulados do backend, criados e gerenciados pelo JSON Server.
