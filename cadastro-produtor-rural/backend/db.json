@@ -1,30 +1,40 @@
 {
   "registers": [
     {
-      "id": 1,
-      "cpfCnpjField": 44607663883,
-      "name": "Thalita",
-      "farmName": "Fazenda da Laura",
-      "state": "São Paulo",
-      "city": "Boituva",
-      "farmArea": 22222,
-      "arableArea": 100000,
-      "vegetationArea": 111111,
+      "id": 2,
+      "cpfCnpjField": "446.076.638-83",
+      "producerName": "Thalita Andrade Rodrigues Santos",
+      "farmName": "Fazenda dos Andrades",
+      "state": "Bahia",
+      "city": "Feira de Santana",
+      "farmArea": "8",
+      "arableArea": "2",
+      "vegetationArea": "4",
       "plantedCrops": [
-        "Algodão",
-        "Milho"
+        "",
+        true,
+        true,
+        "",
+        ""
       ]
     },
     {
-      "cpfCnpjField": "rwewerw",
-      "name": "rwerewr",
-      "farmName": "ewrwer",
-      "state": "fdsfdsfsd",
-      "city": "fsdfsdfsd",
-      "arableArea": 324324324,
-      "vegetationArea": 4234234,
-      "plantedCrops": "fdsdfdssdf",
-      "id": 2
+      "cpfCnpjField": "446.076.638-83",
+      "producerName": "Laura Andrade Vial",
+      "farmName": "Fazenda dos Vial",
+      "state": "Espírito Santo",
+      "city": "Cachoeiro de Itapemirim",
+      "farmArea": "5",
+      "arableArea": "2",
+      "vegetationArea": "1",
+      "plantedCrops": [
+        "",
+        "",
+        true,
+        true,
+        ""
+      ],
+      "id": 4
     }
   ]
 }

@@ -1,51 +1,18 @@
-<div *ngIf="registeredItems.length > 0">
+<section class="content-list">
   <h2>Produtores Rurais Cadastrados:</h2>
-  <div class="content-list .ff-roboto-mono">
-    <ul>
-      <div *ngFor="let item of registeredItems">
-        <li class="itens-list">
-          <div>
-            <h3 class="item-list">Produtor: {{ item.producerName }}</h3>
-            <p class="item-list"><strong>CPF/CNPJ:</strong> {{ item.cpfCnpjField }}</p>
-            <p class="item-list"><strong>Cidade:</strong> {{ item.city }}</p>
-            <p class="item-list"><strong>Estado:</strong> {{ item.state }}</p>
-          </div>
-          <div>
-            <h3 class="item-list"><strong>Fazenda:</strong> {{ item.farmName }} </h3>
-            <p class="item-list"><strong>Área total da Fazenda:</strong> {{ item.farmArea }}</p>
-            <p class="item-list"><strong>Área agricultavel:</strong> {{ item.arableArea }}</p>
-            <p class="item-list"><strong>Área de vegetação: </strong>{{ item.vegetationArea }}</p>
-            <p class="item-list"><strong>Culturas Platadas:</strong> {{ item.plantedCrops }}</p>
-          </div>
-          <div class="buttons">
-            <button class="button-edit" >
-              <img src="../../../../assets/img/icone-edit.png" routerLink="/register/edit-register/{{register.id}}"  alt="Ícone de editar">
-            </button>
-            <button class="button-delete" >
-              <img src="../../../../assets/img/icone-delete.png" alt="Ícone de excluir">
-            </button>
-          </div>
-        </li>
-      </div>
-    </ul>
+  <div *ngIf="registeredItems.length > 0">
+    <div *ngFor="let register of registeredItems">
+      <app-producer [register]="register"></app-producer>
+    </div>
   </div>
-</div>
 
-<div *ngIf="registeredItems.length === 0">
-  <p>Nenhum Produtor Rural cadastrado</p>
-</div>
+  <div *ngIf="registeredItems.length === 0">
+    <p>Nenhum Produtor Rural cadastrado</p>
+  </div>
+</section>
 
 <!--
   - Criar lista de produtores com suas informações :
       - com botão direcionando para a tela de editar
       - botão de excluir que abre o alert confirmando a exclusão
-
-  producerName: string
-  farmName: string
-  state: string
-  city: string
-  farmArea: string
-  arableArea: string
-  vegetationArea: string
-  plantedCrops: string[]
  -->

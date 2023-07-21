@@ -14,6 +14,8 @@ import { RegisterComponent } from './components/pages/register/register.componen
 import { ProducerListComponent } from './components/pages/producer-list/producer-list.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 import { EditRegisterComponent } from './components/pages/edit-register/edit-register.component';
+import { ProducerComponent } from './components/producer/producer.component';
+import { DeleteRegisterComponent } from './components/delete-register/delete-register.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { EditRegisterComponent } from './components/pages/edit-register/edit-reg
     HomeComponent,
     ProducerListComponent,
     DashboardComponent,
-    EditRegisterComponent
+    EditRegisterComponent,
+    ProducerComponent,
+    DeleteRegisterComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,33 @@
+<div class="content-register .ff-roboto-mono">
+  <ul>
+      <li class="itens-list">
+        <div>
+          <h3 class="item-list">Produtor: {{ register.producerName }}</h3>
+          <p class="item-list"><strong>CPF/CNPJ:</strong> {{ register.cpfCnpjField }}</p>
+          <p class="item-list"><strong>Cidade:</strong> {{ register.city }}</p>
+          <p class="item-list"><strong>Estado:</strong> {{ register.state }}</p>
+        </div>
+        <div>
+          <h3 class="item-list"><strong>Fazenda:</strong> {{ register.farmName }} </h3>
+          <p class="item-list"><strong>Área total da Fazenda:</strong> {{ register.farmArea }}</p>
+          <p class="item-list"><strong>Área agricultavel:</strong> {{ register.arableArea }}</p>
+          <p class="item-list"><strong>Área de vegetação: </strong>{{ register.vegetationArea }}</p>
+          <p class="item-list"><strong>Culturas Platadas:</strong> {{ register.plantedCrops }}</p>
+        </div>
+        <div class="buttons">
+          <button class="button-edit" >
+            <img src="../../../../assets/img/icone-edit.png" routerLink="/register/edit-register/{{register.id}}" alt="Ícone de editar">
+          </button>
+          <button class="button-delete" >
+            <img src="../../../../assets/img/icone-delete.png" routerLink="/register/delete-register/{{register.id}}" alt="Ícone de excluir">
+          </button>
+        </div>
+      </li>
+  </ul>
+</div>
+
+<!--
+  FUncionalidades faltandes:
+  - Retornar no card do produtor a label das culturas plantadas
+
+ -->

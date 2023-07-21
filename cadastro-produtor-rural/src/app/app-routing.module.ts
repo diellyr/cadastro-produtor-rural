@@ -5,6 +5,7 @@ import { RegisterComponent } from './components/pages/register/register.componen
 import { ProducerListComponent } from './components/pages/producer-list/producer-list.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 import { EditRegisterComponent } from './components/pages/edit-register/edit-register.component';
+import { DeleteRegisterComponent } from './components/delete-register/delete-register.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent
+  },
+  {
+    path: 'register/delete-register/:id',
+    component: DeleteRegisterComponent
   },
   {
     path: 'register/edit-register/:id',

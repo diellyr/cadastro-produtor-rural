@@ -43,6 +43,7 @@ export class EditRegisterComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id')
     this.service.searchById(parseInt(id!)).subscribe((register) => {
       this.form = this.formBuilder.group({
+        id: [register.id],
         cpfCnpjField:[register.cpfCnpjField, Validators.compose([
           Validators.required,
           validateCpfCnpj
@@ -85,14 +86,14 @@ export class EditRegisterComponent implements OnInit {
     console.log(this.form.value);
     if(this.form.valid){
       this.service.edit(this.form.value).subscribe(() => {
-        this.router.navigate(['/home'])
+        this.router.navigate(['/producer-list'])
         console.log('SAIR');
       })
     }
   }
 
   cancel() {
-    this.router.navigate(['/home'])
+    this.router.navigate(['/producer-list'])
   }
 
   onInputChange(event: any) {

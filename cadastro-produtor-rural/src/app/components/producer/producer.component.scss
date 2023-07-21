@@ -1,0 +1,42 @@
+.content-register {
+  margin: 20px;
+}
+
+.buttons {
+  grid-column: 2;
+  justify-self: end;
+
+}
+
+.button-edit {
+  border: none;
+  cursor: pointer;
+  margin-right: 5px;
+  margin-top: 10px;
+}
+
+img {
+  width: 40px;
+  height: 40px;
+}
+
+.button-delete {
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.itens-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: #f0f0f0;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.item-list {
+  margin-bottom: 10px;
+}
+

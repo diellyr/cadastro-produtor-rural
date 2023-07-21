@@ -22,9 +22,9 @@ export class RegisterService {
     return this.http.get<Register[]>(this.API);
   }
 
-  deleteItem(id: number): Observable<void> {
+  deleteRegister(id: number): Observable<Register> {
     const url = `${this.API}/${id}`;
-    return this.http.delete<void>(url);
+    return this.http.delete<Register>(url);
   }
 
   edit(register: Register): Observable<Register> {
