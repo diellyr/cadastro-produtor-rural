@@ -18,15 +18,9 @@ jobs:
       with:
         node-version: 14.x
         
-    - name: listar pre-caminho 
-      run: pwd    
+    - name: listar arquivos
+      run: ls -lah    
         
-    - name: Navegar até o diretório do projeto
-      run: cd cadastro-produtor-rural/cadastro-produtor-rural/
-      
-    - name: listar pos-caminho
-      run: pwd   
-
     - name: Install Dependencies
       run: npm ci
 
