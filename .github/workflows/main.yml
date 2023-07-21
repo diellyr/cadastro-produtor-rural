@@ -19,7 +19,7 @@ jobs:
         node-version: 14.x
     
     - name: alterar diretorio
-      run: /home/runner/work/cadastro-produtor-rural/cadastro-produtor-rural/cadastro-produtor-rural 
+      run: cd /home/runner/work/cadastro-produtor-rural/cadastro-produtor-rural/cadastro-produtor-rural 
         
     - name: listar arquivos
       run: ls -lah    
