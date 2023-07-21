@@ -23,7 +23,11 @@ jobs:
 
     - name: Build
       run: cd /home/runner/work/cadastro-produtor-rural/cadastro-produtor-rural/cadastro-produtor-rural && ls -lah  && npm run build --if-present
-
+     
+    - name: Ler variáveis
+      run: echo ${{ secrets.AWS_ACCESS_KEY_ID }} && echo ${{ secrets.AWS_SECRET_ACCESS_KEY }} && echo ${{ secrets.AWS_REGION  }}
+ 
+     
     - name: Deploy to S3
       uses: jakejarvis/s3-sync-action@master
       with:
