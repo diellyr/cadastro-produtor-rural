@@ -28,7 +28,7 @@ jobs:
       run: pwd
       
     - name: List directory 
-      run: ls -lah /home/runner/work/cadastro-produtor-rural/cadastro-produtor-rural/cadastro-produtor-rural
+      run: ls -lah /home/runner/work/cadastro-produtor-rural/cadastro-produtor-rural/cadastro-produtor-rural/dist/cadastro-produtor-rural
  
     - name: Ler variaveis
       run: echo ${{ secrets.AWS_ACCESS_KEY_ID }} && echo ${{ secrets.AWS_SECRET_ACCESS_KEY }} && echo ${{ secrets.AWS_REGION  }}
