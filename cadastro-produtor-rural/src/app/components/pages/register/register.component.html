@@ -110,7 +110,7 @@
     <div class="content-planted-crops" formArrayName="plantedCrops">
       <p>Culturas Plantadas:</p>
       <label *ngFor="let cropLabel of plantedCropsLabels; let i = index" [for]="'planted-crops-' + i" class="custom-checkbox">
-        <input type="checkbox" [formControlName]="i" [id]="'planted-crops-' + i">
+        <input value="cropLabel" type="checkbox" [formControlName]="i" [id]="'planted-crops-' + i">
         {{ cropLabel }}
       </label>
       <div *ngIf="submitAttempted && form.get('plantedCrops')?.invalid" class="errors">Campo obrigatório</div>

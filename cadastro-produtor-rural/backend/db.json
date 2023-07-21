@@ -17,24 +17,6 @@
         "",
         ""
       ]
-    },
-    {
-      "cpfCnpjField": "446.076.638-83",
-      "producerName": "Laura Andrade Vial",
-      "farmName": "Fazenda dos Vial",
-      "state": "Espírito Santo",
-      "city": "Cachoeiro de Itapemirim",
-      "farmArea": "5",
-      "arableArea": "2",
-      "vegetationArea": "1",
-      "plantedCrops": [
-        "",
-        "",
-        true,
-        true,
-        ""
-      ],
-      "id": 4
     }
   ]
 }
