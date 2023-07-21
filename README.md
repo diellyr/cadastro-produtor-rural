@@ -1,6 +1,6 @@
 # Cadastro Produtor Rural
 
-![image](https://github.com/andradethalita/cadastro-produtor-rural/assets/82850176/8edfeb74-8f4b-421b-8d05-39a9a84fa175)
+![image](https://github.com/andradethalita/cadastro-produtor-rural/assets/82850176/88551e98-f302-470d-88a8-ac167dad76f0)
 
 
 ## Descrição do Projeto
