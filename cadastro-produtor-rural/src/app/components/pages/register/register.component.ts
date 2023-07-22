@@ -27,7 +27,6 @@ export class RegisterComponent implements OnInit {
   plantedCropsLabels = ['Milho', 'Soja', 'Café', 'Algodão', 'Cana de Açucar'];
   plantedCropsValues: string[] = [];
 
-
   constructor(
     private service: RegisterService,
     private router: Router,
@@ -63,23 +62,24 @@ export class RegisterComponent implements OnInit {
       plantedCrops: this.formBuilder.array([], atLeastOneCheckboxSelectedValidator)
     }, { validator: sumAreaValidator });
     this.form.get('state')?.setValue('');
-    this.onStateChange();
 
-    this.populatePlantedCrops();
     this.form.get('plantedCrops')?.valueChanges.subscribe((selectedCrops: boolean[]) => {
       this.updateSelectedPlantedCrops(selectedCrops);
     });
+    this.plantedCropsValues = this.plantedCropsLabels.filter((_, index) => this.form.get('plantedCrops')?.value[index]);
+    this.populatePlantedCrops();
+
+    this.onStateChange();
   }
 
   register() {
     this.submitAttempted = true;
-    console.log(this.form.value);
-
-    if(this.form.valid){
-      this.service.create(this.form.value).subscribe(() => {
-        this.router.navigate(['/home'])
-        console.log('cheguei');
-      })
+    if (this.form.valid) {
+      const formData = this.form.value;
+      formData.plantedCrops = this.plantedCropsValues
+      this.service.create(formData).subscribe(() => {
+        this.router.navigate(['/producer-list'], { state: { formData: formData } });
+      });
     }
   }
 
@@ -108,14 +108,15 @@ export class RegisterComponent implements OnInit {
       } else {
         plantedCropsArray.push(this.formBuilder.control(''));
       }
-
     });
-
   }
 
   updateSelectedPlantedCrops(selectedCrops: boolean[]) {
-    this.plantedCropsValues = this.plantedCropsLabels.filter((_, index) => selectedCrops[index]);
-    console.log('O que quando na plantedCropsValues', this.plantedCropsValues);
-
+    this.plantedCropsValues = [];
+    selectedCrops.forEach((selected, index) => {
+      if (selected) {
+        this.plantedCropsValues.push(this.plantedCropsLabels[index]);
+      }
+    });
   }
 }
