@@ -1,3 +1,87 @@
+### Criando usuário no IAM e configurando as permissões para gravação no S3
+
+Para criar um usuário na AWS e fornecer permissões para gravar no S3, você pode usar o serviço IAM (Identity and Access Management) da AWS. Aqui estão as etapas para fazer isso:
+
+1. Faça login no console de gerenciamento da AWS e navegue até o serviço IAM.
+
+2. No painel de navegação esquerdo, clique em "Users" (Usuários).
+
+3. Clique no botão "Add user" (Adicionar usuário).
+
+4. Insira um nome de usuário e selecione a opção "Programmatic access" (Acesso programático) e clique em "Next: Permissions" (Próximo: Permissões).
+
+5. Na página de permissões, você tem várias opções. Para dar a este usuário acesso ao S3, você pode:
+
+   - Anexar políticas diretamente: Pesquise por "S3" e selecione a política chamada "AmazonS3FullAccess" se desejar conceder acesso total ao S3 para esse usuário. Se desejar conceder apenas acesso de gravação, talvez seja necessário criar uma política personalizada.
+
+   - Adicionar o usuário a um grupo: Se você já tem um grupo com as políticas do S3 anexadas, pode adicionar o usuário a esse grupo.
+
+6. Clique em "Next: Tags" (Próximo: Tags). Aqui, você pode adicionar tags ao usuário se desejar, mas isso é opcional. Clique em "Next: Review" (Próximo: Revisar).
+
+7. Revise as configurações do usuário. Se tudo estiver correto, clique em "Create user" (Criar usuário).
+
+8. Na página final, você verá os detalhes de "Access key ID" e "Secret access key" para o usuário. Certifique-se de anotar esses valores ou baixar o arquivo .csv, pois você não poderá recuperar a chave de acesso secreta novamente.
+
+Depois de seguir estas etapas, você terá um usuário IAM com as permissões adequadas para gravar no S3. Você pode usar a ID da chave de acesso e a chave de acesso secreta desse usuário para autenticar o usuário no S3. Lembre-se de tratar essas chaves como informações sensíveis e não as compartilhe ou publique. 
+
+Importante: essa configuração fornece permissão completa de S3 ao usuário. Em um ambiente de produção, você deve criar uma política que conceda apenas as permissões mínimas necessárias ao usuário para reduzir o risco de segurança.
+
+### Configurando as chaves aws como variáveis de ambiente
+
+As variáveis de ambiente na AWS, como `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` e `AWS_REGION`, são geralmente armazenadas como segredos em seu repositório do GitHub. Aqui estão os passos para configurar essas variáveis no GitHub Actions:
+
+1. Navegue até o repositório GitHub onde você deseja configurar as variáveis de ambiente.
+
+2. Clique na guia "Settings" (Configurações).
+
+3. No menu à esquerda, clique em "Secrets" (Segredos).
+
+4. Clique no botão "New repository secret" (Novo segredo do repositório).
+
+5. Insira o nome do segredo no campo "Name" (Nome). O nome do segredo deve corresponder à variável de ambiente que você está tentando definir, por exemplo, `AWS_ACCESS_KEY_ID`.
+
+6. Insira o valor correspondente no campo "Value" (Valor). Certifique-se de que este valor seja a chave de acesso da AWS para `AWS_ACCESS_KEY_ID` ou a chave de acesso secreta da AWS para `AWS_SECRET_ACCESS_KEY`. Para a `AWS_REGION`, o valor será a região AWS desejada, como `us-east-1`.
+
+7. Clique no botão "Add secret" (Adicionar segredo) para salvar a variável.
+
+Repita esses passos para cada uma das variáveis de ambiente necessárias (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`).
+
+Agora, quando você definir essas variáveis em seu arquivo de configuração do GitHub Actions (como `AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}`), o GitHub substituirá automaticamente `secrets.AWS_ACCESS_KEY_ID` pelo valor do segredo que você definiu. Este valor estará disponível para as etapas do seu workflow como uma variável de ambiente, mas o valor real da chave será ocultado nos logs para manter a segurança.
+
+Lembre-se, nunca compartilhe suas chaves de acesso AWS publicamente, e não as inclua diretamente nos seus arquivos de script ou de configuração. Sempre use segredos ou outras formas seguras de gerenciamento de segredos para lidar com essas informações sensíveis.
+
+
+
+### Descrição da Configuração do Bucket S3
+
+Para tornar seu bucket do S3 hospedado na web, siga as etapas abaixo:
+
+**Nota:** Antes de começar, certifique-se de que você já carregou seu conteúdo estático para o bucket do S3.
+
+1. Faça login na AWS Management Console e abra o serviço Amazon S3.
+
+2. Na lista de buckets, escolha o bucket que você deseja usar para hospedar um site estático.
+
+3. Escolha a guia "Propriedades".
+
+4. Role para baixo até "Configurações de hospedagem de site estático" e clique em "Editar".
+
+5. Marque a opção "Habilitar" para ativar a hospedagem de site estático.
+
+6. No campo "Documento de índice", insira o nome do arquivo HTML que você deseja usar como página inicial para seu site (normalmente, este arquivo é chamado `index.html`).
+
+7. (Opcional) No campo "Documento de erro", insira o nome do arquivo HTML que você deseja usar quando um erro 4xx é retornado (por exemplo, `error.html`).
+
+8. (Opcional) Se quiser, você pode inserir um caminho de Redirecionamento para o bucket no campo correspondente.
+
+9. Clique em "Salvar mudanças".
+
+Depois de habilitar a hospedagem de site estático, você pode acessar o site usando a URL do endpoint do site. O formato do URL do endpoint do site é http://nome_do_bucket.s3-website-região.amazonaws.com. Por exemplo, se o nome do seu bucket é `meu-site-exemplo` e ele está na região `us-west-2`, o URL do site seria `http://meu-site-exemplo.s3-website-us-west-2.amazonaws.com`.
+
+Lembre-se de que se você quiser que seu conteúdo seja acessível publicamente, você precisa definir as permissões de bucket e/ou objeto corretamente. Você pode usar a política de bucket ou as ACLs do objeto para fazer isso.
+
+
+
 ## Descrição do Pipeline
 
 name: CI/CD Workflow
