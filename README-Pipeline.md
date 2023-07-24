@@ -102,17 +102,17 @@ Claro, aqui está uma explicação detalhada dessa etapa:
 Portanto, essa etapa está usando a ação `s3-sync-action` para fazer o deploy do seu aplicativo para o S3 com configurações específicas, como tornar os objetos publicamente legíveis, seguir links simbólicos e deletar objetos não presentes no diretório de origem.
 
 
-env:: Esta seção define as variáveis de ambiente para a ação.
+- env:: Esta seção define as variáveis de ambiente para a ação.
 
-AWS_S3_BUCKET: cadastro-produtor-rural: Aqui você define a variável de ambiente AWS_S3_BUCKET para o nome do seu bucket S3, que é "cadastro-produtor-rural".
+  - AWS_S3_BUCKET: cadastro-produtor-rural: Aqui você define a variável de ambiente AWS_S3_BUCKET para o nome do seu bucket S3, que é "cadastro-produtor-rural".
 
-AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}: Aqui você define a variável de ambiente AWS_ACCESS_KEY_ID para o valor da chave de acesso da AWS, que é armazenada como um segredo em seu repositório do GitHub. O valor real dessa chave é ocultado e seguro.
+  - AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}: Aqui você define a variável de ambiente AWS_ACCESS_KEY_ID para o valor da chave de acesso da AWS, que é armazenada como um segredo em seu repositório do GitHub. O valor real dessa chave é ocultado e seguro.
 
-AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}: Aqui você define a variável de ambiente AWS_SECRET_ACCESS_KEY para o valor da chave de acesso secreta da AWS, que é armazenada como um segredo em seu repositório do GitHub. O valor real dessa chave é ocultado e seguro.
+  - AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}: Aqui você define a variável de ambiente AWS_SECRET_ACCESS_KEY para o valor da chave de acesso secreta da AWS, que é armazenada como um segredo em seu repositório do GitHub. O valor real dessa chave é ocultado e seguro.
 
-AWS_REGION: ${{ secrets.AWS_REGION }}: Aqui você define a variável de ambiente AWS_REGION para o valor da região da AWS, que é armazenada como um segredo em seu repositório do GitHub. O valor real dessa região é ocultado e seguro.
+  - AWS_REGION: ${{ secrets.AWS_REGION }}: Aqui você define a variável de ambiente AWS_REGION para o valor da região da AWS, que é armazenada como um segredo em seu repositório do GitHub. O valor real dessa região é ocultado e seguro.
 
-SOURCE_DIR: 'dist/cadastro-produtor-rural': Aqui você define a variável de ambiente SOURCE_DIR para o caminho do diretório que você deseja sincronizar com o bucket S3. Nesse caso, o diretório é 'dist/cadastro-produtor-rural'.
+  - SOURCE_DIR: 'dist/cadastro-produtor-rural': Aqui você define a variável de ambiente SOURCE_DIR para o caminho do diretório que você deseja sincronizar com o bucket S3. Nesse caso, o diretório é 'dist/cadastro-produtor-rural'.
 
 ### Resumo
 
