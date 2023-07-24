@@ -1,4 +1,4 @@
-### Criando usuário no IAM e configurando as permissões para gravação no S3
+## - Criando usuário no IAM e configurando as permissões para gravação no S3
 
 Para criar um usuário na AWS e fornecer permissões para gravar no S3, você pode usar o serviço IAM (Identity and Access Management) da AWS. Aqui estão as etapas para fazer isso:
 
@@ -26,7 +26,9 @@ Depois de seguir estas etapas, você terá um usuário IAM com as permissões ad
 
 Importante: essa configuração fornece permissão completa de S3 ao usuário. Em um ambiente de produção, você deve criar uma política que conceda apenas as permissões mínimas necessárias ao usuário para reduzir o risco de segurança.
 
-### Configurando as chaves aws como variáveis de ambiente
+---
+
+## - Configurando as chaves aws como variáveis de ambiente
 
 As variáveis de ambiente na AWS, como `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` e `AWS_REGION`, são geralmente armazenadas como segredos em seu repositório do GitHub. Aqui estão os passos para configurar essas variáveis no GitHub Actions:
 
@@ -50,9 +52,10 @@ Agora, quando você definir essas variáveis em seu arquivo de configuração do
 
 Lembre-se, nunca compartilhe suas chaves de acesso AWS publicamente, e não as inclua diretamente nos seus arquivos de script ou de configuração. Sempre use segredos ou outras formas seguras de gerenciamento de segredos para lidar com essas informações sensíveis.
 
+---
 
 
-### Descrição da Configuração do Bucket S3
+## - Descrição da Configuração do Bucket S3
 
 Para tornar seu bucket do S3 hospedado na web, siga as etapas abaixo:
 
@@ -82,7 +85,7 @@ Lembre-se de que se você quiser que seu conteúdo seja acessível publicamente,
 
 
 
-## Descrição do Pipeline
+## - Descrição do Pipeline
 
 name: CI/CD Workflow
 
